@@ -41,7 +41,10 @@ Installation
 	The first array is setting the rule for the role id. The next two values are defining the controller and method.
 		$this->perms[2]['admin']['index'] = true;
 	This for example will allow everyone with the role_id 2 to access BASE_URL/admin(/index)
-	
+
+* Please make sure, that you need a need a field in your session with the role id!
+* Note that role id 0 is reserved for guests!
+* Inheritance is **NOT** supportet at this point in time!
 	
 TODO
 ----
