@@ -27,8 +27,13 @@ class ACL {
         
 
         
-        $this->perms[0]['server']['graph_add']        = true;
-        $this->perms[0]['server']['edit']             = true;
+        $this->perms[0]['home']['index']        = true;
+        $this->perms[0]['home']['about']        = true;
+        $this->perms[1]['user']['dashboard']    = true;
+        $this->perms[1]['user']['edit']         = true;
+        $this->perms[1]['user']['show']         = true;
+        $this->perms[2]['admin']['dashboard']   = true;
+        $this->perms[3]['admin']['settings']    = true;
     }
     /**
      * The main method, determines if the a user is allowed to view a site
@@ -87,9 +92,14 @@ class ACL {
         }
         else
         { # not logged in
-            $CI->session->set_flashdata('error', $CI->config->item('error_loggedin'));
-            
-            // REDIRECT HERE
+            if ($this->perms[0][$class][$method])
+            { # The user is allowed to enter the site
+                return true;
+            }
+            else
+            { # The user does not have permissions
+                $CI->error->show(403);
+            }
         }
 
         
