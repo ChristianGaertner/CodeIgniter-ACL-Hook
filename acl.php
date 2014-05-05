@@ -49,7 +49,7 @@ class ACL {
             $CI->load->library('session');
         }
         
-        if (!isset($CI->session))
+        if (!isset($CI->router))
         { # Router is not loaded
             $CI->load->library('router');
         }
